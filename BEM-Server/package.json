@@ -1,0 +1,11 @@
+{
+  "name": "bem-server",
+  "version": "1.0.0",
+  "description": "Server to conncect DB to client app and handle communication between consumers/salons.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RnDMizeD",
+  "license": "ISC"
+}
