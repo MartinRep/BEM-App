@@ -1,11 +1,20 @@
 {
   "name": "bem-server",
   "version": "1.0.0",
-  "description": "Server to conncect DB to client app and handle communication between consumers/salons.",
+  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "RnDMizeD",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "cors": "^2.8.1",
+    "errorhandler": "^1.5.0",
+    "express": "^4.15.0",
+    "helmet": "^3.4.1",
+    "mongoose": "^4.8.5",
+    "morgan": "^1.8.1"
+  }
 }

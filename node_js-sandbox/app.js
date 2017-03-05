@@ -24,29 +24,18 @@ app.use(bodyParser.urlencoded({extended: false}));
 //Set Static path
 app.use(express.static(path.join(__dirname,'public')));
 
-var users = [{
-    id: 1,
-    first_name: 'John',
-    last_name: 'Doe',
-    email: 'jdoe@gmail.com'
-},{
-    id: 2,
-    first_name: 'Bob',
-    last_name: 'Smith',
-    email: 'bsmith@gmail.com'
-},{
-    id: 3,
-    first_name: 'Jessie',
-    last_name: 'Olsen',
-    email: 'jolsen@gmail.com'
-}]
+//Post request
+app.post('/login', function(req,res){
+    let data = req.json();
+    console.log('Request received: [POST]' + data);
+    res=true;
+    return res;
+})
 
-//Get request
-app.get('/', function(req,res){
-    res.render('index', {
-        title: 'Customers',
-        users: users
-    });
+app.get('/login', function(req,res){
+    res.send('Hello World');
+    console.log('Request received: [GET]');
+    return res;
 })
 
 //Listener
