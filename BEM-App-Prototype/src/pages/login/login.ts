@@ -1,3 +1,4 @@
+import { MenuPage } from './../menu/menu';
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
@@ -20,12 +21,12 @@ export class LoginPage {
  
   public login() {
     this.showLoading()
-    console.log('From login.ts: '+ this.registerCredentials.username);
     this.auth.login(this.registerCredentials).subscribe(allowed => {
+      console.log('Allowed: '+ allowed);
       if (allowed) {
         setTimeout(() => {
         this.loading.dismiss();
-        this.nav.setRoot(HomePage)
+        this.nav.setRoot(MenuPage)
         });
       } else {
         this.showPopup('Authentication Failed',"Access Denied");

@@ -1,3 +1,5 @@
+import { BookingPage } from './../pages/booking/booking';
+import { ManageBookingsPage } from './../pages/manage-bookings/manage-bookings';
 import { UserService } from './../providers/user-service';
 import { AppSettings } from './../providers/app-settings';
 import { NgModule } from '@angular/core';
@@ -7,13 +9,18 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { AuthService } from '../providers/auth-service';
 import { RegisterPage } from '../pages/register/register';
- 
+import { MenuPage } from '../pages/menu/menu';
+
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    MenuPage,
+    BookingPage,
+    ManageBookingsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -23,7 +30,10 @@ import { RegisterPage } from '../pages/register/register';
     MyApp,
     HomePage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    MenuPage,
+    BookingPage,
+    ManageBookingsPage
   ],
   providers: [UserService, AppSettings, AuthService]
 })
