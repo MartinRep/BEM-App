@@ -23,7 +23,7 @@ var UserSchema = new Schema({
         type: String
     },
     bookings:{
-
+        type: Object
     },
     created_at: Date,
 });

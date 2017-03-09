@@ -1,3 +1,4 @@
+import { BookingService } from './../providers/booking-service';
 import { BookingPage } from './../pages/booking/booking';
 import { ManageBookingsPage } from './../pages/manage-bookings/manage-bookings';
 import { UserService } from './../providers/user-service';
@@ -35,6 +36,6 @@ import { MenuPage } from '../pages/menu/menu';
     BookingPage,
     ManageBookingsPage
   ],
-  providers: [UserService, AppSettings, AuthService]
+  providers: [UserService, AppSettings, AuthService, BookingService]
 })
 export class AppModule {}

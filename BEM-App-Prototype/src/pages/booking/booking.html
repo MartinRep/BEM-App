@@ -20,50 +20,54 @@
     </ion-col>
     <ion-col></ion-col>
   </ion-row>
+
   <div class="bem-menubox">
-    <ion-row>
-      <ion-col>
-        <ion-list inset>
-          <ion-item>
-            <ion-label>Location:</ion-label>
-            <ion-select [(ngModel)]="locations">
-              <ion-option *ngFor="let item of getLocations();"> {{item}} </ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-label>Select Service:</ion-label>
-            <ion-select [(ngModel)]="service">
-              <ion-option *ngFor="let item of getServices();"> {{item}} </ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-label>Date:</ion-label>
-            <ion-select [(ngModel)]="date">
-              <ion-option *ngFor="let item of getDates();" > {{item}} </ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-label>Time:</ion-label>
-            <ion-select [(ngModel)]="time">
-              <ion-option *ngFor="let item of getTimes();" > {{item}} </ion-option>
-            </ion-select>
-            <ion-select [(ngModel)]="margin">
-              <ion-option *ngFor="let item of getTimeMargin();" > {{item}}</ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-label>Travel Time:</ion-label>
-            <ion-select [(ngModel)]="ttime">
-              <ion-option *ngFor="let item of getTravelTime();" > {{item}}</ion-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <button ion-button block color="light" round class="bem-button">Book</button>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-    </ion-row>
+    <form (ngSubmit)="getBooking()" #bookingForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-label>Location:</ion-label>
+              <ion-select name="location" [(ngModel)]="booking.locations" required>
+                <ion-option *ngFor="let item of getLocations();"> {{item}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Select Service:</ion-label>
+              <ion-select name="service" [(ngModel)]="booking.service" required>
+                <ion-option *ngFor="let item of getServices();"> {{item}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Date:</ion-label>
+              <ion-select name="date" [(ngModel)]="booking.date" required>
+                <ion-option *ngFor="let item of getDates();"> {{item}} </ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Time:</ion-label>
+              <ion-select name="time" [(ngModel)]="booking.time" required>
+                <ion-option *ngFor="let item of getTimes();"> {{item}} </ion-option>
+              </ion-select>
+              <ion-select name="margin" [(ngModel)]="booking.margin" required>
+                <ion-option *ngFor="let item of getTimeMargin();"> {{item}}</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>Travel Time:</ion-label>
+              <ion-select name="ttime" [(ngModel)]="booking.ttime" required>
+                <ion-option *ngFor="let item of getTravelTime();"> {{item}}</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <button ion-button block color="light" round class="bem-button" type="submit" [disabled]="!bookingForm.form.valid">Book</button>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </form>
   </div>
+
 
 
   <!--   -->
