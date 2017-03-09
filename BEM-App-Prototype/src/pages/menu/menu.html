@@ -5,14 +5,40 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>menu</ion-title>
+    <ion-title>Menu</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
+<ion-content class="padding">
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="http://www.besteverme.ie/object?type=image&id=481&width=250" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="bem-menubox">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
 
+          <ion-item>
+            <button ion-button block color="light" round class="bem-button" (click)="createBooking()">Book</button>
+          </ion-item>
 
-<ion-content padding>
+          <ion-item>
+            <button ion-button block color="light" round class="bem-button" (click)="manageBookings()">My Bookings</button>
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </div>
+
 
 </ion-content>

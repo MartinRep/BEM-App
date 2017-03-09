@@ -7,12 +7,66 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>booking</ion-title>
+    <ion-title>Booking</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content>
+  <ion-row class="logo-row">
+    <ion-col></ion-col>
+    <ion-col width-67>
+      <img src="http://www.besteverme.ie/object?type=image&id=481&width=250" />
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+  <div class="bem-menubox">
+    <ion-row>
+      <ion-col>
+        <ion-list inset>
+          <ion-item>
+            <ion-label>Location:</ion-label>
+            <ion-select [(ngModel)]="locations">
+              <ion-option *ngFor="let item of getLocations();"> {{item}} </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Select Service:</ion-label>
+            <ion-select [(ngModel)]="service">
+              <ion-option *ngFor="let item of getServices();"> {{item}} </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Date:</ion-label>
+            <ion-select [(ngModel)]="date">
+              <ion-option *ngFor="let item of getDates();" > {{item}} </ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Time:</ion-label>
+            <ion-select [(ngModel)]="time">
+              <ion-option *ngFor="let item of getTimes();" > {{item}} </ion-option>
+            </ion-select>
+            <ion-select [(ngModel)]="margin">
+              <ion-option *ngFor="let item of getTimeMargin();" > {{item}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Travel Time:</ion-label>
+            <ion-select [(ngModel)]="ttime">
+              <ion-option *ngFor="let item of getTravelTime();" > {{item}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <button ion-button block color="light" round class="bem-button">Book</button>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </div>
 
-<ion-content padding>
+
+  <!--   -->
+
 
 </ion-content>

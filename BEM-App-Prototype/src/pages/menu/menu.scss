@@ -1,4 +1,24 @@
 page-menu {
-
-
+    .bem-button {
+        background: white;
+        color: #FF6164;
+        border-radius: 30px !important;
+        border: 1px solid darkgray;
+    }
+    .bem-logo {
+        padding-top: 50px;
+        padding-bottom: 20px;
+        margin-top: 45px;
+    }
+    .bem-menubox {
+        font-size: 1.0em;
+        position: absolute;
+        top: 45%;
+        width: 100%;
+        height: 65%;
+        color: #fff;
+        background: white;
+        padding: 20px 20px 0px 20px;
+        margin-top: 15px;
+    }
 }

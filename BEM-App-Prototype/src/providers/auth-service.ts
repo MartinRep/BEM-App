@@ -1,14 +1,15 @@
 import { UserService } from './user-service';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs/Observable';
 
 export class User {
   username: string;
   email: string;
+  user_type: string;
 
 
   constructor(username: string, email: string) {
@@ -17,17 +18,10 @@ export class User {
   }
 }
 
-export class UserDB {
-  constructor() {
-
-  }
-}
-
 
 @Injectable()
 export class AuthService {
   currentUser: User;
-  userDB: UserDB;
 
   constructor(public userService: UserService, public http: Http) { }
 
@@ -42,7 +36,7 @@ export class AuthService {
           data => {
             let access;
             if (data.success) {
-              this.currentUser = new User(data.user.username, data.user.email);
+              this.currentUser = data.user;
               access = true;
             } else {
               access = false;
@@ -51,14 +45,14 @@ export class AuthService {
             observer.complete();
           }, (err) => {
             console.log(err);
+            observer.next(false);
+            observer.complete();
           },
-
           () => {
             console.log("completed");
           }
         );
         //end of testing connection
-        //let access = (credentials.password === "pass" && credentials.email === "email"); 
       });
     }
   }
