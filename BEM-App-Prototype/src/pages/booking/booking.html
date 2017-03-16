@@ -28,35 +28,35 @@
           <ion-list inset>
             <ion-item>
               <ion-label>Location:</ion-label>
-              <ion-select name="location" [(ngModel)]="booking.locations" required>
-                <ion-option *ngFor="let item of getLocations();"> {{item}} </ion-option>
+              <ion-select name="location" [(ngModel)]="booking.location" required>
+                <ion-option *ngFor="let item of getLocations();">{{item}}</ion-option>
               </ion-select>
             </ion-item>
             <ion-item>
               <ion-label>Select Service:</ion-label>
               <ion-select name="service" [(ngModel)]="booking.service" required>
-                <ion-option *ngFor="let item of getServices();"> {{item}} </ion-option>
+                <ion-option *ngFor="let item of getServices();">{{item}}</ion-option>
               </ion-select>
             </ion-item>
             <ion-item>
               <ion-label>Date:</ion-label>
               <ion-select name="date" [(ngModel)]="booking.date" required>
-                <ion-option *ngFor="let item of getDates();"> {{item}} </ion-option>
+                <ion-option *ngFor="let item of getDates();">{{item}}</ion-option>
               </ion-select>
             </ion-item>
             <ion-item>
               <ion-label>Time:</ion-label>
               <ion-select name="time" [(ngModel)]="booking.time" required>
-                <ion-option *ngFor="let item of getTimes();"> {{item}} </ion-option>
+                <ion-option *ngFor="let item of getTimes();">{{item}}</ion-option>
               </ion-select>
               <ion-select name="margin" [(ngModel)]="booking.margin" required>
-                <ion-option *ngFor="let item of getTimeMargin();"> {{item}}</ion-option>
+                <ion-option *ngFor="let item of getTimeMargin();">{{item}}</ion-option>
               </ion-select>
             </ion-item>
             <ion-item>
               <ion-label>Travel Time:</ion-label>
               <ion-select name="ttime" [(ngModel)]="booking.ttime" required>
-                <ion-option *ngFor="let item of getTravelTime();"> {{item}}</ion-option>
+                <ion-option *ngFor="let item of getTravelTime();">{{item}}</ion-option>
               </ion-select>
             </ion-item>
             <ion-item>

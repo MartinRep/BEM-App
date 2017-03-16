@@ -23,7 +23,7 @@ var UserSchema = new Schema({
         type: String
     },
     bookings:{
-        type: Object
+        type: Array
     },
     created_at: Date,
 });
@@ -36,6 +36,7 @@ UserSchema.pre('save', function (next) {
     if (!user.created_at) {
         user.created_at = currentDate;
         user.user_type = 'customer';
+        user.bookings= [];
     }
     next();
 })

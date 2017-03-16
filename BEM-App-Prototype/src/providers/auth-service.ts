@@ -10,7 +10,6 @@ export class User {
   username: string;
   email: string;
   user_type: string;
-  booking: [{}];
 
 
   constructor(username: string, email: string) {
@@ -61,15 +60,6 @@ export class AuthService {
 
   public getUserInfo(): User {
     return this.currentUser;
-  }
-
-  public addBooking(booking){
-    if (this.currentUser.booking != null){
-      this.currentUser.booking.push(booking);
-    } else {
-      this.currentUser.booking = [{booking}];
-    }
-    
   }
 
   public logout() {

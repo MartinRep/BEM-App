@@ -3,6 +3,8 @@ const express = require('express');
 const app = module.exports = express.Router();
 
 const User = require('./bem-user');
+const Booking = require('./bem-booking');
+const Salon = require('./bem-salon');
 
 // POST
 // Create a new User
@@ -71,7 +73,7 @@ app.get('/find/:username', function (req, res) {
       return res.json({ "success": false, "msg": "Error while searching User", "error": err });
     }
     if (results == null) {
-      return res.status(400).json({"success": false, "msg":"User not found."});
+      return res.status(400).json({ "success": false, "msg": "User not found." });
     }
     results.password = '';
     return res.status(200).json(results);
@@ -92,9 +94,59 @@ app.post('/login', function (req, res) {
     if (results == null) {
       return res.json({ "success": false, "msg": "Error while login. Invalid Credentials" });
     }
-    let user = results;
-    user.password = '';
-    res.status(201).json({'success': true, user: user});
+    let usr = results;
+    usr.password = '';
+    res.status(201).json({ 'success': true, user: usr });
   });
 
 });
+
+
+
+// REQUEST BOOKING
+// requesting booking with one user 
+app.post('/book', function (req, res) {
+  let booking = new Booking({
+    username: req.body.username,
+    location: req.body.booking.location,
+    service: req.body.booking.service,
+    date: req.body.booking.date,
+    time: req.body.booking.time,
+    timeMargin: req.body.booking.margin,
+    travelTime: req.body.booking.ttime,
+    status: 'new'
+  });
+  console.log(booking);
+
+  booking.save();
+
+//For demonstration purposes send available salons straight away
+
+  Salon.find({ $and: [{ 'location': booking.location }, { 'services':{$elemMatch:{$eq:booking.service}} }] }, function (err, results) {
+    if (err) {
+      return res.json({ "success": false, "msg": "Error while searching Salon", "error": err });
+    }
+    if (results == null || results.length < 1) {
+      return res.status(400).json({ "success": false, "msg": "Salons not found." });
+    }
+    results.password = '';
+    console.log(results);
+    return res.status(200).json({ "success": true, 'bookings': results });
+  });
+});
+
+
+app.get('/bookings/:username', function (req, res) {
+  Booking.find({'username': req.params.username }, function (err, bookings) {
+    if (err) {
+      return res.json({ "success": false, "msg": "Error while creating User", "error": err });
+    }
+    if (bookings == null || bookings.length < 1) {
+      return res.status(400).json({ "success": false, "msg": "Bookings not found." });
+    }
+    res.status(200).send({ "success": true, "bookings": bookings });
+  });
+});
+
+
+

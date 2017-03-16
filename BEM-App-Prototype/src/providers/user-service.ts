@@ -36,5 +36,16 @@ export class UserService {
       .map(response => response.json());
   }
 
+  public getUserBookings(username){
+    return this.http.get(this.apiUrl + 'bookings/'+ username)
+      .map(response => response.json());
+
+  }
+
+  public book(booking){
+    return this.http.post(this.apiUrl + 'book/', booking)
+      .map(response => response.json());
+  }
+
 }
 

@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { UserService } from './user-service';
 import { AuthService } from './auth-service';
 import { Injectable } from '@angular/core';
@@ -14,18 +15,52 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class BookingService {
-  bookRequest: any;
+  bookings: Array<any>;
 
   constructor(public http: Http, public auth: AuthService, public userService: UserService) {
     console.log('Hello BookingService Provider');
   }
 
-public book(booking){
-  this.auth.addBooking(booking);
-  console.log('Booking Added.');
-  console.log(this.auth.getUserInfo());
-  //this.userService.
-}
+  public loadBookings(username) {
+    return Observable.create(observer => {
+      // At this point make a request to backend to make a real check!
+      //testing server connection
+      this.userService.getUserBookings(username).subscribe(
+        data => {
+          if (data.success) {
+            this.bookings = data.bookings;
+          }
+          observer.next(data.success);
+          observer.complete();
+        }
+      );
+      //end of testing connection
+    });
+  }
 
+  public book(booking){
+    let newBooking = {'username':this.auth.currentUser.username, 'booking':booking};
+    return Observable.create(observer => {
+      // At this point make a request to backend to make a real check!
+      //testing server connection
+      this.userService.book(newBooking).subscribe(
+        data => {
+          if (data.success) {
+            this.bookings.push(data.bookings);
+          }
+          observer.next(data.success);
+          observer.complete();
+        }
+      );
+      //end of testing connection
+    });
+  }
 
+  public getBookings() {
+    return this.bookings;
+  }
+
+  public addBooking(booking) {
+    this.bookings.push(booking);
+  }
 }
