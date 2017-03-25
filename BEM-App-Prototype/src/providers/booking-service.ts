@@ -16,16 +16,15 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class BookingService {
   bookings: Array<any>;
+  salon: any;
 
   constructor(public http: Http, public auth: AuthService, public userService: UserService) {
     console.log('Hello BookingService Provider');
   }
 
-  public loadBookings(username) {
+  public loadBookings() {
     return Observable.create(observer => {
-      // At this point make a request to backend to make a real check!
-      //testing server connection
-      this.userService.getUserBookings(username).subscribe(
+      this.userService.getUserBookings(this.auth.currentUser.username).subscribe(
         data => {
           if (data.success) {
             this.bookings = data.bookings;
@@ -34,7 +33,35 @@ export class BookingService {
           observer.complete();
         }
       );
-      //end of testing connection
+    });
+  }
+
+  public loadSalonDetails(salonID) {
+    return Observable.create(observer => {
+      this.userService.findSalon(salonID).subscribe(
+        data => {
+          if (data.success) {
+            this.salon = data.salon;
+          }
+          observer.next(data.success);
+          observer.complete();
+        }
+      );
+    });
+  }
+
+   public acceptOffer(payload) {
+     console.log('offer through booking service');
+    return Observable.create(observer => {
+      this.userService.acceptOffer(payload).subscribe(
+        data => {
+          if (data.success) {
+            this.salon = data.salon;
+          }
+          observer.next(data.success);
+          observer.complete();
+        }
+      );
     });
   }
 
@@ -45,9 +72,6 @@ export class BookingService {
       //testing server connection
       this.userService.book(newBooking).subscribe(
         data => {
-          if (data.success) {
-            this.bookings.push(data.bookings);
-          }
           observer.next(data.success);
           observer.complete();
         }

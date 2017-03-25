@@ -29,11 +29,9 @@ export class MenuPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MenuPage');
     this.getUserDetails();
-    this.getBookings();
   }
 
   private getUserDetails() {
-
     this.userService.findUser(this.auth.currentUser.username).subscribe(data => {
       this.user = data;
       console.log(this.user);
@@ -45,7 +43,7 @@ export class MenuPage {
   }
 
   private getBookings() {
-    this.bookingService.loadBookings(this.auth.currentUser.username).subscribe(success => {
+    this.bookingService.loadBookings().subscribe(success => {
       console.log(this.bookingService.bookings);
     },
       error => {
@@ -59,13 +57,16 @@ export class MenuPage {
     });
   }
 
-
   public createBooking() {
     this.navCtrl.push(BookingPage);
   }
 
   public manageBookings() {
-    this.navCtrl.push(ManageBookingsPage);
+    this.bookingService.loadBookings().subscribe(success => {
+      this.navCtrl.push(ManageBookingsPage);
+    },
+      error => {
+        console.log('Error finding bookings');
+      });
   }
-
 }

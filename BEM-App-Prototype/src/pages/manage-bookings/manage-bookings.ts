@@ -1,3 +1,6 @@
+import { BookingDetailsPage } from './../booking-details/booking-details';
+import { AuthService } from './../../providers/auth-service';
+import { BookingService } from './../../providers/booking-service';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -12,11 +15,20 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'manage-bookings.html'
 })
 export class ManageBookingsPage {
+  bookings: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public bookingService: BookingService) {
+    this.bookingService.loadBookings();
+    this.bookings = this.bookingService.getBookings();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ManageBookingsPage');
+    
+  }
+
+  public getDetails(booking){
+    this.navCtrl.push(BookingDetailsPage, booking);
   }
 
 }

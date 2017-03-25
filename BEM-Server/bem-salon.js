@@ -11,9 +11,22 @@ var SalonSchema = new Schema({
         type: String,
         required: true
     },
-    service: {
+    services: {
+        type: Array,
+        required: true
+    },
+    description:{
         type: String,
         required: true
+    },
+    imgsrc:{
+        type: String
+    },
+    rating:{
+        type: Number
+    },
+    review:{
+        type: Object
     },
     created_at: Date,
 });
@@ -25,6 +38,8 @@ SalonSchema.pre('save', function (next) {
 
     if (!salon.created_at) {
         salon.created_at = currentDate;
+        salon.rating = 0;
+        salon.review = null;
     }
     next();
 })

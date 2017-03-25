@@ -7,12 +7,19 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>manage_bookings</ion-title>
+    <ion-title>My Bookings</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-card *ngFor="let item of bookings;">
+      <ion-card-header (click)="getDetails(item)">
+        {{item.service}} in {{item.location}}
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
 
 </ion-content>

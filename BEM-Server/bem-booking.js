@@ -31,6 +31,16 @@ var BookingSchema = new Schema({
     status: {
         type: String
     },
+    candidates: {
+        type: Array
+    },
+    selected: {
+        type: String
+    },
+    imgsrc: {
+        type: String
+    },
+    id:{},
     created_at: Date,
 });
 
@@ -41,6 +51,17 @@ BookingSchema.pre('save', function (next) {
 
     if (!booking.created_at) {
         booking.created_at = currentDate;
+        booking.status = 'new';
+        booking.candidates = null;
+        booking.selected = null;
+    }
+    switch(booking.location){
+        case 'Galway':
+            booking.imgsrc = 'http://d5qsyj6vaeh11.cloudfront.net/images/destinations/galway%20city/galway-city-new/3img-collage.jpg';
+            break;
+        case 'Dublin':
+            booking.imgsrc = 'http://www.colliers.ie/img/ireland-ab.jpg';
+            break;
     }
     next();
 })

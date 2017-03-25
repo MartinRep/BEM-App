@@ -1,0 +1,64 @@
+<!--
+  Generated template for the BookingDetails page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{bookingName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <img src="{{booking.imgsrc}}" />
+    <br />
+    <table style="width:100%">
+      <tbody>
+        <tr>
+          <td class="rowHeader">Location: </td>
+          <td class="bookingData">{{booking.location}}</td>
+        </tr>
+        <tr>
+          <td class="rowHeader">Service: </td>
+          <td class="bookingData">{{booking.service}}</td>
+        </tr>
+        <tr>
+          <td class="rowHeader">Date: </td>
+          <td class="bookingData">{{booking.date}}</td>
+        </tr>
+        <tr>
+          <td class="rowHeader">Time: </td>
+          <td class="bookingData">{{booking.time}} {{booking.timeMargin}}</td>
+        </tr>
+        <tr>
+          <td class="rowHeader">Travel Time: </td>
+          <td class="bookingData">{{booking.travelTime}}</td>
+        </tr>
+        <tr>
+          <td class="rowHeader">Status: </td>
+          <td class="bookingData" style="font-style: italic;">{{booking.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+  </ion-card>
+  <ion-list>
+    <ion-card *ngFor="let item of getCandidates();">
+      <ion-card-header>
+        <table style="width:100%">
+          <tr>
+            <td (click)="getDetails(item)">{{item.name}} for {{item.price}}£ </td>
+            <td>
+              <ion-icon name="checkmark-circle-outline" (click)="selectSalon(item)"></ion-icon>
+            </td>
+          </tr>
+        </table>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
+</ion-content>

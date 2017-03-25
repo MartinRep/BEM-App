@@ -26,7 +26,6 @@ export class UserService {
   }
 
   public findUser(username) {
-    console.log('find user: ' + username);
     return this.http.get(this.apiUrl + 'find/' + username)
       .map(response => response.json());
   }
@@ -36,15 +35,27 @@ export class UserService {
       .map(response => response.json());
   }
 
-  public getUserBookings(username){
-    return this.http.get(this.apiUrl + 'bookings/'+ username)
+  public getUserBookings(username) {
+    return this.http.get(this.apiUrl + 'bookings/' + username)
       .map(response => response.json());
 
   }
 
-  public book(booking){
+  public book(booking) {
     return this.http.post(this.apiUrl + 'book/', booking)
       .map(response => response.json());
+  }
+
+  public findSalon(salonID) {
+    return this.http.get(this.apiUrl + 'findSalon/' + salonID)
+      .map(response => response.json());
+  }
+
+  public acceptOffer(payload) {
+    console.log('offer through user service');
+    return this.http.post(this.apiUrl + 'acceptOffer/', payload)
+      .map(response => response.json());
+
   }
 
 }

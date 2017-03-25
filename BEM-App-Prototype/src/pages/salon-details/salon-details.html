@@ -1,0 +1,76 @@
+<!--
+  Generated template for the SalonDetails page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{salon.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <ion-card>
+    <img src="{{salon.imgsrc}}" />
+    <br />
+    <table style="width:100%">
+      <tbody>
+        <tr>
+          <ion-card>
+            <ion-card-header class="card-header">
+              Location:
+            </ion-card-header>
+            <ion-card-content class="card-content">
+              <div>{{salon.location}}</div>
+            </ion-card-content>
+          </ion-card>
+        </tr>
+        <tr>
+          <ion-card>
+            <ion-card-header class="card-header">
+              Services:
+            </ion-card-header>
+            <ion-card-content class="card-content">
+              <div>{{salon.services}}</div>
+            </ion-card-content>
+          </ion-card>
+        </tr>
+        <tr>
+          <ion-card>
+            <ion-card-header class="card-header">
+              Description:
+            </ion-card-header>
+            <ion-card-content class="card-content">
+              <div>{{salon.description}}</div>
+            </ion-card-content>
+          </ion-card>
+        </tr>
+        <tr>
+          <ion-card>
+            <ion-card-header class="card-header">
+              Rating:
+            </ion-card-header>
+            <ion-card-content class="card-content">
+              <div>{{salon.rating}}</div>
+            </ion-card-content>
+          </ion-card>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+  </ion-card>
+  <!--ion-list>
+    <ion-card *ngFor="let review of salon.reviews;">
+      <ion-card-header>
+        <table style="width:100%">
+          <tr>
+            <td>{{review.rating}}</td>
+          </tr>
+          <tr> {{review.review}}</tr>
+        </table>
+      </ion-card-header>
+    </ion-card>
+  </ion-list-->
+</ion-content>
