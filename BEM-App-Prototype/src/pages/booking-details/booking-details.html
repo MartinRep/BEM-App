@@ -33,7 +33,7 @@
         </tr>
         <tr>
           <td class="rowHeader">Time: </td>
-          <td class="bookingData">{{booking.time}} {{booking.timeMargin}}</td>
+          <td class="bookingData">{{booking.time}}:{{booking.timeMargin}}</td>
         </tr>
         <tr>
           <td class="rowHeader">Travel Time: </td>
@@ -61,4 +61,9 @@
       </ion-card-header>
     </ion-card>
   </ion-list>
+  <ion-card id="reviewBox" style="visibility: collapse">
+    <ion-card-header>
+      <button ion-button block color="danger" (click)="writeReview()">Write Review</button>
+    </ion-card-header>
+  </ion-card>
 </ion-content>

@@ -1,9 +1,9 @@
 page-register {
   .login-content {
-    background: transparent;
+    background: white;
  
     .login-box {
-      background: transparent;
+      background: white;
       padding: 20px 20px 0px 20px;
       margin-top: 30px;
     }
@@ -33,7 +33,8 @@ page-register {
      }
  
      .submit-btn {
-       background: transparent;
+       color: #FF6164;
+       background: white;
        border-radius: 30px !important;
        border: 1px solid black !important;
      }

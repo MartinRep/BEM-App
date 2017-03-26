@@ -35,7 +35,7 @@ var BookingSchema = new Schema({
         type: Array
     },
     selected: {
-        type: String
+        type: Object
     },
     imgsrc: {
         type: String
@@ -54,6 +54,7 @@ BookingSchema.pre('save', function (next) {
         booking.status = 'new';
         booking.candidates = null;
         booking.selected = null;
+        booking.id = '_' + booking._id.toString();
     }
     switch(booking.location){
         case 'Galway':

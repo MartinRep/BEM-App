@@ -51,9 +51,22 @@ export class BookingService {
   }
 
    public acceptOffer(payload) {
-     console.log('offer through booking service');
     return Observable.create(observer => {
       this.userService.acceptOffer(payload).subscribe(
+        data => {
+          if (data.success) {
+            this.salon = data.salon;
+          }
+          observer.next(data.success);
+          observer.complete();
+        }
+      );
+    });
+  }
+
+   public postReview(review) {
+    return Observable.create(observer => {
+      this.userService.postReview(review).subscribe(
         data => {
           if (data.success) {
             this.salon = data.salon;

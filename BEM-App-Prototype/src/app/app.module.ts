@@ -1,3 +1,4 @@
+import { ReviewPagePage } from './../pages/review-page/review-page';
 import { BookingDetailsPage } from './../pages/booking-details/booking-details';
 import { SalonDetailsPage } from './../pages/salon-details/salon-details';
 import { BookingService } from './../providers/booking-service';
@@ -27,7 +28,8 @@ import { MenuPage } from '../pages/menu/menu';
     BookingPage,
     ManageBookingsPage,
     SalonDetailsPage,
-    BookingDetailsPage
+    BookingDetailsPage,
+    ReviewPagePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -42,7 +44,8 @@ import { MenuPage } from '../pages/menu/menu';
     BookingPage,
     ManageBookingsPage,
     BookingDetailsPage,
-    SalonDetailsPage
+    SalonDetailsPage,
+    ReviewPagePage
   ],
   providers: [UserService, AppSettings, AuthService, BookingService]
 })

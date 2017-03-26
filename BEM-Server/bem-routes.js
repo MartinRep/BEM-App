@@ -112,7 +112,6 @@ app.post('/book', function (req, res) {
     travelTime: req.body.booking.ttime,
     status: 'new'
   });
-  console.log(booking);
 
   let bookRequest = booking.save(function (err) {
     if (err) {
@@ -150,11 +149,9 @@ function requestAvailableSalons(location, service, id) {
     if (results == null || results.length < 1) {
       return { "success": false, "msg": "Salons not found." };
     }
-    console.log('RESULTS: ' + results);
     result = results;
   }).then(function (result) {
     let candidates = [];
-    console.log(result);
     for (var i = 0; i < result.length; i++) {
       let candidate = {
         salonID: result[i]._id,
@@ -162,7 +159,6 @@ function requestAvailableSalons(location, service, id) {
         price: 20
       };
       candidates.push(candidate);
-      console.log('Candidates: ' + candidate.name);
     }
     Booking.update({ '_id': id }, { 'candidates': candidates, 'status': 'pending' }, function (err, data) {
       if (err) {//Error handling at its best 
@@ -177,7 +173,6 @@ function requestAvailableSalons(location, service, id) {
 // FIND Salon
 // find one salon by its id
 app.get('/findSalon/:salonID', function (req, res) {
-  console.log('Getting Salon: ' + req.params.salonID);
   let lectionId = req.params.salonID;
   if (!lectionId || lectionId === "") {
     return res.json({ "success": false, "msg": "You need to send the ID of the Salon", "error": err });
@@ -195,28 +190,80 @@ app.get('/findSalon/:salonID', function (req, res) {
 
 });
 
+
+//ACCEPTING OFFER FROM SALON
 app.post('/acceptOffer', function (req, res) {
   let selected = {
     salonID: req.body.candidate.salonID,
     name: req.body.candidate.name,
     price: req.body.candidate.price
   };
-  console.log(selected);
-  /*
-  Booking.update({ '_id': id },  {'selected': selected, 'status': 'accepted' }, function (err, data) {
-    if (err) {//Error handling at its best 
-      return res.json({ "success": false, "msg": "Error while accpeting offer", "error": err });
-    } else {
-       
+  let id = '_' + req.body.bookingID.toString();
+  Booking.findById(req.body.bookingID, function (err, doc) {
+    if (err) {
+      return res.json({ "success": false, "msg": "Error while accepting offer", "error": err });
     }
-  });*/
-  Booking.findByIdAndUpdate(req.body.bookingID, {"status": "accepted" }, function (err, data) {
-    if (err) {//Error handling at its best 
-      return res.json({ "success": false, "msg": "Error while accpeting offer", "error": err });
+    if (doc == null) {
+      return res.json({ "success": false, "msg": "Error while accepting offer", "error": err });
     }
-    return res.status(200).json({ "success": true, "msg": "Offer Accepted" });
-  });
+    let booking = doc;
+    booking.selected = [];
+    booking.selected.push(selected);
+    booking.status = 'accepted';
+    booking.save(function (err) {
+      if (err) {
+        console.log("Unexpected Error: ", err);
+        return res.json({ "success": false, "msg": "Error while accepting offer", "error": err });
+      }
+      res.status(201).send({ "success": true, "msg": 'Successful accepting offer.' });
+    })
 
+  });
+});
+
+//POST A REVIEW FOR A SALON
+app.put('/postReview', function (req, res) {
+  let bookingID = req.body.bookingID;
+  let salonID = req.body.salonID;
+  let review = req.body.review;
+  console.log(req.body.review);
+  //review {rating, reviewText}
+  //set booking to finished or reviewed
+  Booking.findById(bookingID, function (err, doc) {
+    if (err) {
+      return res.json({ "success": false, "msg": "Error while finding booking", "error": err });
+    }
+    if (doc == null) {
+      return res.json({ "success": false, "msg": "Error while finding booking", "error": err });
+    }
+    let booking = doc;
+    booking.status = 'completed';//<-----------------------------TO CHANGE!!!!!!!!!!!!!!!!!!!!!!!
+    booking.save(function (err) {
+      if (err) {
+        console.log("Unexpected Error: ", err);
+        return res.json({ "success": false, "msg": "Error while saving booking", "error": err });
+      }
+    })
+  });
+  Salon.findById(salonID, function (err, doc) {
+    if (err) {
+      return res.json({ "success": false, "msg": "Error while finding salon", "error": err });
+    }
+    if (doc == null) {
+      return res.json({ "success": false, "msg": "Error while finding salon", "error": err });
+    }
+    let salon = doc;
+    salon.rating = Math.ceil(((salon.rating * salon.review.length) + review.rating) / (salon.review.length + 1));
+    salon.review.push({'review':review});
+    console.log(salon.review);
+    salon.save(function (err) {
+      if (err) {
+        console.log("Unexpected Error: ", err);
+        return res.json({ "success": false, "msg": "Error while saving review", "error": err });
+      }
+    })
+  });
+  res.status(201).send({ "success": true, "msg": 'Successful saving review.' });
 });
 
 

@@ -57,6 +57,16 @@
             </ion-card-content>
           </ion-card>
         </tr>
+        <tr>
+          <ion-card *ngFor="let item of salon.review">
+            <ion-card-header class="card-header">
+              Rating: {{item.review.rating}}
+            </ion-card-header>
+            <ion-card-content class="card-content">
+              <div>{{item.review.reviewText}}</div>
+            </ion-card-content>
+          </ion-card>
+        </tr>
       </tbody>
     </table>
     <br />

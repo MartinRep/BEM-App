@@ -26,7 +26,7 @@ var SalonSchema = new Schema({
         type: Number
     },
     review:{
-        type: Object
+        type: Array
     },
     created_at: Date,
 });
@@ -39,7 +39,7 @@ SalonSchema.pre('save', function (next) {
     if (!salon.created_at) {
         salon.created_at = currentDate;
         salon.rating = 0;
-        salon.review = null;
+        salon.review = [];
     }
     next();
 })

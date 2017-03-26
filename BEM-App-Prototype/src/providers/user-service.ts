@@ -52,11 +52,15 @@ export class UserService {
   }
 
   public acceptOffer(payload) {
-    console.log('offer through user service');
     return this.http.post(this.apiUrl + 'acceptOffer/', payload)
       .map(response => response.json());
-
   }
+
+  public postReview(review) {
+    return this.http.put(this.apiUrl + 'postReview/', review)
+      .map(response => response.json());
+  }
+
 
 }
 
