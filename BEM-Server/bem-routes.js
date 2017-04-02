@@ -179,7 +179,7 @@ function requestAvailableSalons(location, service, id) {
       let candidate = {
         salonID: result[i]._id,
         name: result[i].name,
-        price: 20
+        price: Math.floor(Math.random() * (45 - 20 + 1) + 20)//20 
       };
       candidates.push(candidate);
     }

@@ -58,7 +58,7 @@ export class AuthService {
   }
 
 
-  public getUserInfo(): User {
+public getUserInfo(): User {
     return this.currentUser;
   }
 
