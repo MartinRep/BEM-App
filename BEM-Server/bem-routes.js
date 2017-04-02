@@ -123,19 +123,6 @@ app.post('/book', function (req, res) {
   });
 });
 
-//UNUSED
-app.get('/booking/:username', function (req, res) {
-  Booking.find({ 'username': req.params.username }, function (err, bookings) {
-    if (err) {
-      return res.json({ "success": false, "msg": "Error while creating User", "error": err });
-    }
-    if (bookings == null || bookings.length < 1) {
-      return res.status(400).json({ "success": false, "msg": "Bookings not found." });
-    }
-    res.status(200).send({ "success": true, "bookings": bookings });
-  });
-});
-
 //Update the bookings - Test
 //When loading bookings for a user - exclude reviewed - autocomplete completed (based on date) - expire non selected after time expires
 app.get('/bookings/:username', function (req, res) {
