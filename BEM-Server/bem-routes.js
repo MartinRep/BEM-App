@@ -13,7 +13,6 @@ app.post('/user', function (req, res) {
   if (!req.body.username && !req.body.full_name && !req.body.email && !req.body.password) {
     return res.status(400).send({ "success": false, "msg": "Blank fields on user." });
   }
-
   let newUser = new User({
     username: req.body.username,
     full_name: req.body.full_name,
@@ -113,7 +112,7 @@ app.post('/book', function (req, res) {
     status: 'new'
   });
 
-  let bookRequest = booking.save(function (err) {
+  booking.save(function (err) {
     if (err) {
       console.log("Unexpected Error: ", err);
       return res.json({ "success": false, "msg": "Error while creating booking", "error": err });
@@ -185,14 +184,12 @@ function requestAvailableSalons(location, service, id) {
       candidates.push(candidate);
     }
     Booking.update({ '_id': id }, { 'candidates': candidates, 'status': 'pending' }, function (err, data) {
-      if (err) {//Error handling at its best 
-      } else if (!data) {
-      } else {
+      if (err) {
+        console.log('Error while updating booking. ID:' + id);
       }
     });
   });
 }
-
 
 // FIND Salon
 // find one salon by its id
@@ -213,7 +210,6 @@ app.get('/findSalon/:salonID', function (req, res) {
   });
 
 });
-
 
 //ACCEPTING OFFER FROM SALON
 app.post('/acceptOffer', function (req, res) {
@@ -261,7 +257,7 @@ app.put('/postReview', function (req, res) {
       return res.json({ "success": false, "msg": "Error while finding booking", "error": err });
     }
     let booking = doc;
-    booking.status = 'reviewed';//<-----------------------------TO CHANGE!!!!!!!!!!!!!!!!!!!!!!!
+    booking.status = 'reviewed';
     booking.save(function (err) {
       if (err) {
         console.log("Unexpected Error: ", err);
