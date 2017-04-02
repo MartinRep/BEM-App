@@ -20,6 +20,7 @@ export class ManageBookingsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public bookingService: BookingService) {
     this.bookingService.loadBookings();
     this.bookings = this.bookingService.getBookings();
+
   }
 
   ionViewDidLoad() {

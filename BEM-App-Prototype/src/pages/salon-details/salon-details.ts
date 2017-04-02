@@ -26,6 +26,14 @@ export class SalonDetailsPage {
     console.log('ionViewDidLoad SalonDetailsPage');
 
   }
-
+  public getStarRating(rating){ 
+    let ratingStarArray = []; 
+    for (var index = 1; index <= rating; index++) { 
+       ratingStarArray.push(index); 
+    } 
+    return ratingStarArray; 
+ 
+  } 
+ 
 
 }

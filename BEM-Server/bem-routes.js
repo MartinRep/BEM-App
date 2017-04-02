@@ -124,8 +124,8 @@ app.post('/book', function (req, res) {
   });
 });
 
-
-app.get('/bookings/:username', function (req, res) {
+//UNUSED
+app.get('/booking/:username', function (req, res) {
   Booking.find({ 'username': req.params.username }, function (err, bookings) {
     if (err) {
       return res.json({ "success": false, "msg": "Error while creating User", "error": err });
@@ -137,10 +137,34 @@ app.get('/bookings/:username', function (req, res) {
   });
 });
 
+//Update the bookings - Test
+//When loading bookings for a user - exclude reviewed - autocomplete completed (based on date) - expire non selected after time expires
+app.get('/bookings/:username', function (req, res) {
+  Booking.find({ $and: [{ 'status': { $ne: 'reviewed' } }, { 'status': { $ne: 'expired' } }, { 'username': req.params.username }] }, function (err, bookings) {
+    if (err) {
+      return res.json({ "success": false, "msg": "Error while retrieving bookings", "error": err });
+    }
+    if (bookings == null || bookings.length < 1) {
+      return res.status(400).json({ "success": false, "msg": "Bookings not found." });
+    }
+    bookings.forEach(function (booking) {
+      booking.date.setHours(booking.time);
+      booking.date.setMinutes(booking.timeMargin);
+      console.log(booking.date + ' <---- Modified!');
+      if (booking.date < new Date()) {
+        console.log(booking.date + ' <---- Completed!');
+        booking.status = 'completed';
+        if (booking.selected == null) {
+          booking.status = 'expired';
+        }
+        booking.save();
+      }
+    }, this);
+    res.status(200).send({ "success": true, "bookings": bookings });
+  });
+});
+
 function requestAvailableSalons(location, service, id) {
-  //console.log("ID: " + id);
-  //console.log("Location: " + location);
-  //console.log("Service: " + service);
   let result = [];
   Salon.find({ $and: [{ 'location': location }, { 'services': { $elemMatch: { $eq: service } } }] }, function (err, results) {
     if (err) {
@@ -237,7 +261,7 @@ app.put('/postReview', function (req, res) {
       return res.json({ "success": false, "msg": "Error while finding booking", "error": err });
     }
     let booking = doc;
-    booking.status = 'completed';//<-----------------------------TO CHANGE!!!!!!!!!!!!!!!!!!!!!!!
+    booking.status = 'reviewed';//<-----------------------------TO CHANGE!!!!!!!!!!!!!!!!!!!!!!!
     booking.save(function (err) {
       if (err) {
         console.log("Unexpected Error: ", err);
@@ -254,8 +278,7 @@ app.put('/postReview', function (req, res) {
     }
     let salon = doc;
     salon.rating = Math.ceil(((salon.rating * salon.review.length) + review.rating) / (salon.review.length + 1));
-    salon.review.push({'review':review});
-    console.log(salon.review);
+    salon.review.push({ 'review': review });
     salon.save(function (err) {
       if (err) {
         console.log("Unexpected Error: ", err);

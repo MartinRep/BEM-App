@@ -16,8 +16,8 @@
 <ion-content padding>
   <ion-list>
     <ion-card *ngFor="let item of bookings;">
-      <ion-card-header (click)="getDetails(item)">
-        {{item.service}} in {{item.location}}
+      <ion-card-header (click)="getDetails(item)" >
+        {{item.service}} in {{item.location}} <div class="div-date">{{item.date | date:"MM/dd/yyyy"}}</div>
       </ion-card-header>
     </ion-card>
   </ion-list>

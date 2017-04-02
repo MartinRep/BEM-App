@@ -66,7 +66,7 @@ export class BookingDetailsPage {
         error => {
           console.log('Error finding salon');
         });
-      this.navCtrl.popTo(BookingDetailsPage);
+      this.navCtrl.popToRoot();
     } else {
     }
   }

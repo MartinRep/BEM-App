@@ -53,14 +53,14 @@
               Rating:
             </ion-card-header>
             <ion-card-content class="card-content">
-              <div>{{salon.rating}}</div>
+              <ion-icon *ngFor="let star of getStarRating(salon.rating);" name="star" style="color: orange;"></ion-icon> 
             </ion-card-content>
           </ion-card>
         </tr>
         <tr>
           <ion-card *ngFor="let item of salon.review">
             <ion-card-header class="card-header">
-              Rating: {{item.review.rating}}
+              Rating: <ion-icon *ngFor="let star of getStarRating(salon.rating);" name="star" style="color: orange;"></ion-icon> 
             </ion-card-header>
             <ion-card-content class="card-content">
               <div>{{item.review.reviewText}}</div>
