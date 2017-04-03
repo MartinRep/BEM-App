@@ -3,7 +3,7 @@
 This repository contains code and information for a third-year undergraduate project for the final year project of Software Development (Level 7) at [GMIT](http://www.gmit.ie) in the Department of Computer Science and Applied Physics. 
 The project supervisor is [Martin Kenirons](https://github.com/mkenirons).
 
-TODO: REFORMULATE INTRODUCTION
+More information on the [wiki](https://github.com/rndmized/BEM-App/wiki).
 
 ## Project Overview
 The project is a prototype requested to [GMIT](http://www.gmit.ie) by [Best Ever Me](http://www.gmit.ie). Its target is to be an app that provides a reverse auction mechanism for beauty services offered by the clients (salons) of Best Ever Me. Users will download app and register for usage. Salons will use the same app as a service provider.
@@ -46,9 +46,6 @@ The client side is written in Ionic 2. Ionic can be installed using the node pac
 npm install -g ionic cordova
 ```
 
-The application can be compiled in the target instalation package. 
-
-[TODO: Explain how and provide links or create small tutorial in wiki]
 
 ## Authors
 
