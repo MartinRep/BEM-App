@@ -29,7 +29,7 @@ Since it is an HTML5 framework, it needs a native wrapper, in this case I used [
 
 ## Installation
 
-In order to install both the application there are some requirements that must be met.
+In order to install both the application and the server there are some requirements that must be met.
 
 ### Server
 
@@ -46,6 +46,9 @@ The client side is written in Ionic 2. Ionic can be installed using the node pac
 npm install -g ionic cordova
 ```
 
+## Deployment
+
+The server is currently deployed in the cloud using [AWS](https://aws.amazon.com). The client side is compiled and ready to install in your andorid device [here](pending) <- PENDING.
 
 ## Authors
 
