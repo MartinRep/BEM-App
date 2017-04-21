@@ -195,7 +195,7 @@ The server side uses [NodeJs](https://nodejs.org/en/) and several modules. Their
 npm install morgan cors express errorhandler mongoose body-parser helmet
 ```
 
-More info about the server side [here](https://github.com/rndmized/BEM-App/wiki/6.-Server-Side).
+More info about the server side [here](https://github.com/rndmized/BEM-App/wiki/7.-Server-Side).
 
 ### Client 
 
@@ -205,7 +205,7 @@ The client side is written in Ionic 2. Ionic can be installed using the node pac
 npm install -g ionic cordova
 ```
 
-More info about the client side [here](https://github.com/rndmized/BEM-App/wiki/5.-Client-Side).
+More info about the client side [here](https://github.com/rndmized/BEM-App/wiki/6.-Client-Side).
 
 ## Deployment
 
