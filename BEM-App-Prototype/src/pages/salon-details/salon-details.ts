@@ -14,26 +14,28 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 
 export class SalonDetailsPage {
+  /**Variable Declaration */
   salon: any;
   salonName: String;
-
+  /**Constructor */
   constructor(public navCtrl: NavController, public navParams: NavParams, public bookingService: BookingService) {
+    /**Set salon to arg */
     this.salon = this.navParams.data;
-    console.log(this.salon);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SalonDetailsPage');
 
   }
-  public getStarRating(rating){ 
-    let ratingStarArray = []; 
-    for (var index = 1; index <= rating; index++) { 
-       ratingStarArray.push(index); 
-    } 
-    return ratingStarArray; 
- 
-  } 
- 
+  /**Parse rating from number to stars */
+  public getStarRating(rating) {
+    let ratingStarArray = [];
+    for (var index = 1; index <= rating; index++) {
+      ratingStarArray.push(index);
+    }
+    return ratingStarArray;
+
+  }
+
 
 }

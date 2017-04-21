@@ -4,8 +4,8 @@ const logger = require('morgan'),
   express = require('express'),
   errorhandler = require('errorhandler'),
   bodyParser = require('body-parser'),
-  mongoose = require('mongoose'), //Temporary mongo db - sql from bem doesn't make sense (?)
-  helmet = require('helmet'), //Provides security - Further check (?)
+  mongoose = require('mongoose'), //Temporary mongo db
+  helmet = require('helmet'), //Provides security
   config = require('./config.json');
  
 const app = express();

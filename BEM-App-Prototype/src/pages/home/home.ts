@@ -7,6 +7,17 @@ import { LoginPage } from '../login/login';
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+/**
+ * 
+ * 
+ * 
+ * SALON-ADMIN SIDE - TODO IN NEXT ITERATION - PLACEHOLDER PAGE
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 export class HomePage {
   username = '';
   email = '';

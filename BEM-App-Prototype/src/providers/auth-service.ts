@@ -21,17 +21,17 @@ export class User {
 
 @Injectable()
 export class AuthService {
+  /**Variable Declaration */
   currentUser: User;
 
   constructor(public userService: UserService, public http: Http) { }
-
+  /**Log in funtion. Send credentials to server to validate user. Return success.*/
   public login(credentials) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
       return Observable.create(observer => {
-        // At this point make a request to backend to make a real check!
-        //testing server connection
+
         this.userService.login(credentials).subscribe(
           data => {
             let access;
@@ -47,21 +47,17 @@ export class AuthService {
             console.log(err);
             observer.next(false);
             observer.complete();
-          },
-          () => {
-            console.log("completed");
           }
         );
-        //end of testing connection
       });
     }
   }
 
-
-public getUserInfo(): User {
+  /**Return user information */
+  public getUserInfo(): User {
     return this.currentUser;
   }
-
+  /**Log Out */
   public logout() {
     return Observable.create(observer => {
       this.currentUser = null;

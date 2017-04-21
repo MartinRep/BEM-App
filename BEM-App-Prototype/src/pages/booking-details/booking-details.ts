@@ -15,19 +15,22 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
   templateUrl: 'booking-details.html'
 })
 export class BookingDetailsPage {
+  /**Variable declaration */
   bookingName: String;
   booking: any;
-
+  /** Constructor */
   constructor(public navCtrl: NavController, public navParams: NavParams, public bookingService: BookingService, public alertCtrl: AlertController) {
+    /**On page creation pass in booking which details are to be shown */
     this.booking = this.navParams.data;
+    /**Parse date */
     var b: Date = new Date(this.booking.date);
     //I might have to change how it is stored in the db - Re-check booking form
     this.booking.date = b.toLocaleDateString();
+    /**Setting title */
     this.bookingName = this.booking.service + ' in ' + this.booking.location;
   }
-
+  /**On page loaded if booking status is completed show review option */
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BookingDetailsPage');
     if (this.hasSelected()) {
       if (this.booking.status == 'completed') {
         var revBox = document.getElementById('reviewBox');
@@ -35,7 +38,7 @@ export class BookingDetailsPage {
       }
     }
   }
-
+  /**Get details from server and pass values onto new Salon Details Page */
   private getDetails(salon) {
     this.bookingService.loadSalonDetails(salon.salonID).subscribe(success => {
       this.navCtrl.push(SalonDetailsPage, this.bookingService.salon);
@@ -45,6 +48,7 @@ export class BookingDetailsPage {
       });
 
   }
+  /** Check whether a candidate has been selected and return either selected or list of candidates */
   private getCandidates() {
     if (this.booking.selected != null) {
       return this.booking.selected;
@@ -53,8 +57,8 @@ export class BookingDetailsPage {
     }
   }
 
+  /**Set selected salon to arg. Call server updating booking. Return to main menu. */
   public selectSalon(salon) {
-    //call server do whatever and reload page?
     if (!this.hasSelected()) {
       let payload = {
         bookingID: this.booking._id,
@@ -70,12 +74,12 @@ export class BookingDetailsPage {
     } else {
     }
   }
-
+  /** Navigate to review page */
   public writeReview() {
     this.navCtrl.push(ReviewPagePage, this.booking);
 
   }
-
+  /** Check whether a booking has a selected salon. */
   private hasSelected() {
     if (this.booking.selected == null) {
       return false;
@@ -84,23 +88,5 @@ export class BookingDetailsPage {
     }
 
   }
-
-  showPopup(title, text) {
-    let alert = this.alertCtrl.create({
-      title: title,
-      subTitle: text,
-      inputs: [{
-        name: 'score',
-      },
-      {
-        name: 'review',
-        placeholder: 'Enter Text here...'
-      }],
-      buttons: ['OK'],
-      cssClass: 'alert-style'
-    });
-    alert.present(prompt);
-  }
-
 
 }

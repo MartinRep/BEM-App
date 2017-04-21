@@ -13,10 +13,11 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'review-page.html'
 })
 export class ReviewPagePage {
+  /**Variable declaration */
   rating: Number;
   reviewText = '';
   booking: any;
-
+  /**Constructor */
   constructor(public navCtrl: NavController, public navParams: NavParams, public bookingService: BookingService) {
     //Default rating is 5
     this.rating = 5;
@@ -27,7 +28,7 @@ export class ReviewPagePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ReviewPagePage');
   }
-
+  /**Set rating value based on star clicked. Change colors in view to reflect rating */
   public setRating(rating) {
     this.rating = rating;
     for (var index = 1; index <= 5; index++) {
@@ -39,15 +40,17 @@ export class ReviewPagePage {
       }
     }
   }
-
+  /**
+   * Create a review and send it to server to update booking. Return to Main Menu.
+   */
   public postReview() {
-    
+
     let review = {
       bookingID: this.booking._id,
       salonID: this.booking.selected[0].salonID,
       review: {
         rating: this.rating,
-        reviewText:this.reviewText
+        reviewText: this.reviewText
       }
     }
     this.bookingService.postReview(review).subscribe(success => {
