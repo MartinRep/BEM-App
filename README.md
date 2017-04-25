@@ -209,7 +209,9 @@ More info about the client side [here](https://github.com/rndmized/BEM-App/wiki/
 
 ## Deployment
 
-The server is currently deployed in the cloud using [AWS](https://aws.amazon.com). The client side is compiled and ready to install in your andorid device [here](pending) <- PENDING.
+The server is currently deployed in the cloud using [AWS](https://aws.amazon.com). The client side is compiled and ready to install in your andorid device [here](https://github.com/rndmized/BEM-App/blob/master/BEM-App-Prototype/android-debug.apk).
+
+The database is deployed in [mLab](https://mlab.com/).
 
 ## Authors
 
