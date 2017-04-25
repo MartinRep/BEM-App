@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 
 const CONFIG = {
   apiURL: 'http://127.0.0.1:3000/'
+  //apiURL: 'http://bem.redirectme.net:5000/'
 }
 @Injectable()
 export class AppSettings {
