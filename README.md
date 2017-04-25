@@ -5,6 +5,8 @@ The project supervisor is [Martin Kenirons](https://github.com/mkenirons).
 
 More information on the [wiki](https://github.com/rndmized/BEM-App/wiki).
 
+Demonstration video available [here](https://youtu.be/DOhZmTqDrLQ).
+
 ## Project Overview
 The project is a prototype requested to [GMIT](http://www.gmit.ie) by [Best Ever Me](http://www.gmit.ie). Its target is to be an app that provides a reverse auction mechanism for beauty services offered by the clients (salons) of Best Ever Me. Users will download app and register for usage. Salons will use the same app as a service provider.
 
