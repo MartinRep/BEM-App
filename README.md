@@ -215,6 +215,12 @@ The server is currently deployed in the cloud using [AWS](https://aws.amazon.com
 
 The database is deployed in [mLab](https://mlab.com/).
 
+## Known Bugs
+
+* When using a browser other than chrome to test the app, it returns a pipe date error in booking management page.
+* Very little to no validation included due to its status of prototype. (To implement in further iterations)
+* Sometimes app in device does not display items in dropdown lists.
+
 ## Authors
 
 * **Albert Rando** - *Design and Development* - [rndmized](https://github.com/rndmized)
